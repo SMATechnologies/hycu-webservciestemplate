@@ -1,5 +1,5 @@
-# Project Name
-Project description
+# Opcon WebServices Templates for Hycu RestAPI
+We share here json templates that can be use to create WebServices jobs subtypes in Opcon to interact with HYCU Data Protection
 
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
@@ -7,10 +7,28 @@ No Support and No Warranty are provided by SMA Technologies for this project and
 SMA Technologies assumes no liability for damage caused by the usage of any of the files offered here via this Github repository.
 
 # Prerequisites
-
+- Opcon V19.1
+- SMA Webservices Connector for Windows or Linux V20.0.3
+- a HYCU Data Protection system and an Adminitrator account on this system.
+- Create on Opcon on global property (mandatory) for Hycu API url: 
+    - [[myHycuServer]]: your Hycu API url (https://xxx.xxx.xxx.xxx:8443)
+- Create two Optionnal global properties (crypted) for Hycu user & password:
+    - [[HycuUser]]
+    - [[HycuPwd]]
+- Create other Optionnals global properties for recurent used Hycu uuids:
+    - [[Hycu-Hypervisor-Uuid]] : for Hycu Hypervisor Uuid
+    - [[Hycu-Target01-Uuid]] : for your 1st Hycu Target...
 
 # Instructions
-
+- Download the .json file
+- Create your Opcon job Type = Windows or Linux, Sub-type = Web Services and name it.
+- Import Template, choose your .json
+- On Variable tab, check if variables are set according your environment. 
+- Set any other variable required (OpCon Properties are supported).
+- On Steps tab, Step1 in your job, check the body json, and modify it if need.
+- On Steps tab, last step, Response subtab, adjust the poll times to match your hycu backup job durations.
+- On Failure Criteria tab, set the OK return code to 200.
+- Save your Job. 
 
 # License
 Copyright 2019 SMA Technologies
