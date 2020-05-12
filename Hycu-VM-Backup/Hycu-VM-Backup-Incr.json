@@ -1,0 +1,77 @@
+{
+  "templateid" : "Hycu-VM-Backup-Incr",
+  "steps" : [ {
+    "function" : "POST",
+    "url" : "[[myHycuServer]]/rest/v1.0/vms/backup",
+    "request" : {
+      "headers" : [ {
+        "attribute" : "Authorization",
+        "value" : "Basic"
+      }, {
+        "attribute" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\r\n  \"targetUuid\": \"@targetUuid\",\r\n  \"hypervisorUuid\": \"@hypervisorUuid\",\r\n  \"backupType\": \"INCREMENTAL_BACKUP\",\r\n  \"vmUuid\": \"@vm_uuid\",\r\n  \"forceExecutionOutsideRpo\": true\r\n}",
+      "fileName" : null
+    },
+    "response" : {
+      "ignoreResult" : false,
+      "stepCompletionCode" : 202,
+      "responseDataCheck" : null,
+      "fileName" : null,
+      "variables" : [ {
+        "name" : "@jobUuid",
+        "value" : "entities[0].jobUuid"
+      } ]
+    }
+  }, {
+    "function" : "GET",
+    "url" : "[[myHycuServer]]/rest/v1.0/jobs/@jobUuid",
+    "request" : {
+      "headers" : [ {
+        "attribute" : "Authorization",
+        "value" : "Basic"
+      }, {
+        "attribute" : "Content-Type",
+        "value" : "application/json"
+      }, {
+        "attribute" : "jobUuid",
+        "value" : "@jobUuid"
+      } ],
+      "body" : null,
+      "fileName" : null
+    },
+    "response" : {
+      "ignoreResult" : false,
+      "stepCompletionCode" : 200,
+      "responseDataCheck" : {
+        "goodFin" : "OK/WARNING",
+        "badFin" : "ERROR/FATAL/ABORTED",
+        "attributeToCheck" : "entities[0].status",
+        "poll" : true,
+        "pollDelay" : 10,
+        "pollInterval" : 10,
+        "pollMaxTime" : 30
+      },
+      "fileName" : null,
+      "variables" : [ ]
+    }
+  } ],
+  "variables" : [ {
+    "name" : "@User",
+    "value" : "[[HycuUser]]"
+  }, {
+    "name" : "@Password",
+    "value" : "[[HycuPwd]]"
+  }, {
+    "name" : "@targetUuid",
+    "value" : "[[Hycu-Target01-Uuid]]"
+  }, {
+    "name" : "@hypervisorUuid",
+    "value" : "[[Hycu-Hypervisor-Uuid]]"
+  }, {
+    "name" : "@vm_uuid",
+    "value" : "??????"
+  } ],
+  "properties" : [ ]
+}
