@@ -1,0 +1,68 @@
+{
+  "templateid" : "Hycu-VM-Archive-Year",
+  "steps" : [ {
+    "function" : "POST",
+    "url" : "[[myHycuServer]]/rest/v1.0/vms/archive",
+    "request" : {
+      "headers" : [ {
+        "attribute" : "Authorization",
+        "value" : "Basic"
+      } ],
+      "body" : "{\r\n  \"archivingType\": \"YEAR\",\r\n  \"vmUuid\": \"@vm_uuid\"\r\n}",
+      "fileName" : null
+    },
+    "response" : {
+      "ignoreResult" : false,
+      "stepCompletionCode" : 202,
+      "responseDataCheck" : null,
+      "fileName" : null,
+      "variables" : [ {
+        "name" : "@jobUuid",
+        "value" : "entities[0].jobUuid"
+      } ]
+    }
+  }, {
+    "function" : "GET",
+    "url" : "[[myHycuServer]]/rest/v1.0/jobs/@jobUuid",
+    "request" : {
+      "headers" : [ {
+        "attribute" : "Authorization",
+        "value" : "Basic"
+      }, {
+        "attribute" : "Content-Type",
+        "value" : "application/json"
+      }, {
+        "attribute" : "jobUuid",
+        "value" : "@jobUuid"
+      } ],
+      "body" : null,
+      "fileName" : null
+    },
+    "response" : {
+      "ignoreResult" : false,
+      "stepCompletionCode" : 200,
+      "responseDataCheck" : {
+        "goodFin" : "OK/WARNING",
+        "badFin" : "ERROR/FATAL/ABORTED",
+        "attributeToCheck" : "entities[0].status",
+        "poll" : true,
+        "pollDelay" : 10,
+        "pollInterval" : 20,
+        "pollMaxTime" : 240
+      },
+      "fileName" : null,
+      "variables" : [ ]
+    }
+  } ],
+  "variables" : [ {
+    "name" : "@User",
+    "value" : "[[HycuUser]]"
+  }, {
+    "name" : "@Password",
+    "value" : "[[HycuPwd]]"
+  }, {
+    "name" : "@vm_uuid",
+    "value" : "??????"
+  } ],
+  "properties" : [ ]
+}
