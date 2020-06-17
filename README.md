@@ -1,5 +1,7 @@
-# Opcon WebServices Templates for Hycu RestAPI
-We share here json templates that can be use to create WebServices jobs subtypes in Opcon to interact with HYCU Data Protection
+# Opcon Web Services Templates for HYCU multi-cloud data protection
+Templates for the OpCon Web Services Connector to interact with HYCU Multi-cloud Data Protection system (https://www.hycu.com).
+
+Through HYCU, these templates will allow OpCon to perform Full or Incremental Backups as well as Archives (Yearly, Monthly and weekly) on AWS, Azure, Google Cloud, VMware and Nutanix.
 
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
@@ -8,7 +10,8 @@ SMA Technologies assumes no liability for damage caused by the usage of any of t
 
 # Prerequisites
 - Opcon V19.1
-- SMA Webservices Connector for Windows or Linux V20.0.3
+- SMA OpCon Web Services Connector for Windows or Linux V20.0.3
+
 - a HYCU Data Protection system and an Adminitrator account on this system.
 - Create on Opcon on global property (mandatory) for Hycu API url: 
     - [[myHycuServer]]: your Hycu API url (https://xxx.xxx.xxx.xxx:8443)
@@ -20,15 +23,15 @@ SMA Technologies assumes no liability for damage caused by the usage of any of t
     - [[Hycu-Target01-Uuid]] : for your 1st Hycu Target...
 
 # Instructions
-- Download the .json file
-- Create your Opcon job Type = Windows or Linux, Sub-type = Web Services and name it.
-- Import Template, choose your .json
+- Download the template file (.json)
+- Create your Opcon job Type = Windows or Linux, Sub-type = **Web Services** and name it.
+- Import Template, choose your template (.json)
 - On Variable tab, check if variables are set according your environment. 
 - Set any other variable required (OpCon Properties are supported).
 - On Steps tab, Step1 in your job, check the body json, and modify it if need.
 - On Steps tab, last step, Response subtab, adjust the poll times to match your hycu backup job durations.
 - On Failure Criteria tab, set the OK return code to 200.
-- Save your Job. 
+- Save your Job.
 
 # License
 Copyright 2019 SMA Technologies
