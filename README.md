@@ -23,9 +23,10 @@ SMA Technologies assumes no liability for damage caused by the usage of any of t
     - [[Hycu-Target01-Uuid]] : for your 1st Hycu Target...
 
 # Instructions
-- Download the template file (.json)
+- Download the zip file that contains the template files (.json), selecting your release [here](https://github.com/SMATechnologies/hycu-webservciestemplate/releases)
+- Extract the zip on your local machine
 - Create your Opcon job Type = Windows or Linux, Sub-type = **Web Services** and name it.
-- Import Template, choose your template (.json)
+- Import Template, choose your template file (.json) from the extract location
 - On Variable tab, check if variables are set according your environment. 
 - Set any other variable required (OpCon Properties are supported).
 - On Steps tab, Step1 in your job, check the body json, and modify it if need.
